@@ -1,4 +1,5 @@
 defmodule Scrivener.Ecto.TestCase do
+  @moduledoc false
   use ExUnit.CaseTemplate
 
   using opts do

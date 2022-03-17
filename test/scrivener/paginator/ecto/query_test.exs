@@ -1,4 +1,5 @@
 defmodule Scrivener.Paginator.Ecto.QueryTest do
+  @moduledoc false
   use Scrivener.Ecto.TestCase
 
   alias Scrivener.Ecto.{Comment, KeyValue, Post, User}
@@ -12,7 +13,7 @@ defmodule Scrivener.Paginator.Ecto.QueryTest do
       }
       |> Scrivener.Ecto.Repo.insert!()
 
-    Enum.map(1..2, fn i ->
+    Enum.each(1..2, fn i ->
       %Comment{
         body: "Body #{i}",
         post_id: unpublished_post.id
