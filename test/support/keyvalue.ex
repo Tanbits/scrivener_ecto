@@ -1,4 +1,5 @@
 defmodule Scrivener.Ecto.KeyValue do
+  @moduledoc false
   use Ecto.Schema
 
   import Ecto.Query

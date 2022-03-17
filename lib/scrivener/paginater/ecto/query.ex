@@ -45,7 +45,7 @@ defimpl Scrivener.Paginater, for: Ecto.Query do
     |> all(repo, caller, prefix)
   end
 
-  defp total_entries(%{combinations: [_|_]} = query, repo, caller, options) do
+  defp total_entries(%{combinations: [_ | _]} = query, repo, caller, options) do
     prefix = options[:prefix]
 
     simpler_query =
@@ -55,15 +55,18 @@ defimpl Scrivener.Paginater, for: Ecto.Query do
 
     {sql_query, params} = Ecto.Adapters.SQL.to_sql(:all, repo, simpler_query)
     count_query = "select count(*) from (#{sql_query}) as count_me"
+
     %Postgrex.Result{
       columns: ["count"],
       command: :select,
       num_rows: 1,
       rows: [[total_entries]]
-    }
-    = Ecto.Adapters.SQL.query!(
-      repo, "select count(*) from (#{sql_query}) as count_me", params
-    )
+    } =
+      Ecto.Adapters.SQL.query!(
+        repo,
+        "select count(*) from (#{sql_query}) as count_me",
+        params
+      )
 
     total_entries || 0
   end
