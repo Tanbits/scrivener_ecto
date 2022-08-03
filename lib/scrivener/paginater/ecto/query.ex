@@ -1,4 +1,4 @@
-if Code.ensure_loaded?(Postgrex.Result) do
+if Code.ensure_loaded?(Postgrex) do
   defimpl Scrivener.Paginater, for: Ecto.Query do
     import Ecto.Query
 
