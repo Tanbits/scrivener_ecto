@@ -1,9 +1,8 @@
-if Code.ensure_loaded?(Result) do
+if Code.ensure_loaded?(Postgrex.Result) do
   defimpl Scrivener.Paginater, for: Ecto.Query do
     import Ecto.Query
 
     alias Scrivener.{Config, Page}
-    alias Postgrex.Result
 
     @moduledoc false
 
@@ -55,7 +54,7 @@ if Code.ensure_loaded?(Result) do
 
       {sql_query, params} = Ecto.Adapters.SQL.to_sql(:all, repo, simpler_query)
 
-      %Result{
+      %Postgrex.Result{
         columns: ["count"],
         command: :select,
         num_rows: 1,
